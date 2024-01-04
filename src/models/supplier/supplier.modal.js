@@ -156,7 +156,7 @@ export default (sequelize, DataTypes) => {
 				field: "industry_type",
 			},
 			files: {
-				type: "NVARCHAR(MAX)",
+				type: DataTypes.JSON,
 				field: "files",
 			},
 			is_verified: {

@@ -1,61 +1,53 @@
 export default (sequelize, DataTypes) => {
 	return sequelize.define(
-		'brand_level_bp',
+		"brand_level_bp",
 		{
-			id: {
-				type: DataTypes.INTEGER,
-				field: 'id',
-				autoIncreament:true,
-				primaryKey: true,
-				allowNull: false
-			},
 			brand: {
 				type: DataTypes.STRING(120),
-				field: 'brand'
+				field: "brand",
 			},
-			subBrand: {
+			sub_brand: {
 				type: DataTypes.STRING(120),
-				field: 'sub_brand'
+				field: "sub_brand",
 			},
 			division: {
 				type: DataTypes.STRING(140),
-				field: 'division'
+				field: "division",
 			},
-			totalQty: {
+			total_qty: {
 				type: DataTypes.INTEGER,
-				field: 'total_qty',
-				allowNull:false
+				field: "total_qty",
+				defaultValue: 0,
 			},
-			totalMrp: {
+			total_mrp: {
 				type: DataTypes.INTEGER,
-				field: 'total_mrp'
+				field: "total_mrp",
+				defaultValue: 0,
 			},
-			totalCount: {
+			total_count: {
 				type: DataTypes.SMALLINT,
-				field: 'total_count'
+				field: "total_count",
 			},
-			currentCount: {
+			current_count: {
 				type: DataTypes.SMALLINT,
-				field: 'current_count',
-				defaultValue:0
+				field: "current_count",
+				defaultValue: 0,
 			},
-			isVerified: {
+			is_verified: {
 				type: DataTypes.BOOLEAN,
-				field: 'is_verified',
-				defaultValue:false
+				field: "is_verified",
+				defaultValue: false,
 			},
-			isSubmitted: {
+			is_submitted: {
 				type: DataTypes.BOOLEAN,
-				field: 'is_submitted',
-				defaultValue:false
+				field: "is_submitted",
+				defaultValue: false,
 			},
-
-			
 		},
 		{
 			timestamps: true,
 			underscored: true,
-			tableName: 'brand_level_bp'
+			tableName: "brand_level_bp",
 		}
 	);
 };

@@ -8,6 +8,7 @@ import bpRouter from "./routes/businessPlanRouter.js";
 // import vendorFormRouter from "./routes/vendorFormRouter.js";
 import { InsertData, allCustomerInfo } from "./models/BigQuery/lucent.modal.js";
 import supplierRouter from "./routes/supplierRouter.js";
+import productionCostingRouter from "./routes/productionCostingRouter.js";
 
 const corsOptions = {
 	origin: ["http://localhost:3000"],
@@ -30,7 +31,8 @@ app.use("/api/auth", authRouter);
 app.use("/api/business_plan", bpRouter);
 // app.use("/api/vendor_form", vendorFormRouter);
 app.use("/api/supplier", supplierRouter);
-app.get("/api/customers", (req, res) => allCustomerInfo(req, res));
-app.post("/api/customers", (req, res) => InsertData(req, res));
+app.use("/api/production_costing", productionCostingRouter);
+// app.get("/api/customers", (req, res) => allCustomerInfo(req, res));
+// app.post("/api/customers", (req, res) => InsertData(req, res));
 
 export default app;

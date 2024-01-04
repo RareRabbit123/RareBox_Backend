@@ -14,32 +14,32 @@ export default (sequelize, DataTypes) => {
 				field: "season",
 				allowNull: false,
 			},
-			totalQty: {
+			total_qty: {
 				type: DataTypes.INTEGER,
 				field: "total_qty",
 				defaultValue: 0,
 			},
-			totalMrp: {
+			total_mrp: {
 				type: DataTypes.INTEGER,
 				field: "total_mrp",
 				defaultValue: 0,
 			},
-			totalCount: {
+			total_count: {
 				type: DataTypes.SMALLINT,
 				field: "total_count",
 				allowNull: false,
 			},
-			currentCount: {
+			current_count: {
 				type: DataTypes.SMALLINT,
 				field: "current_count",
 				defaultValue: 0,
 			},
-			isVerified: {
+			is_verified: {
 				type: DataTypes.BOOLEAN,
 				field: "is_verified",
 				defaultValue: false,
 			},
-			isSubmitted: {
+			is_submitted: {
 				type: DataTypes.BOOLEAN,
 				field: "is_submitted",
 				defaultValue: false,

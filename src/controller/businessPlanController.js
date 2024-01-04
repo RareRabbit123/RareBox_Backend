@@ -18,18 +18,18 @@ const createNewBusinessPlan = asyncHandler(async (req, res) => {
 
 	try {
 		const result = await models.businessPlan.create(
-			{ season, total_count, channel_level_bp: channels },
+			{ season, total_count, bPlanChannels: channels },
 			{
 				include: [
 					{
 						association: "bPlanChannels",
+						include: [{ association: "channelSubbrands" }],
 					},
 				],
 			}
 		);
 		console.log(result);
 		return res.status(200).json({
-			status: "success",
 			result,
 		});
 	} catch (error) {
@@ -37,7 +37,7 @@ const createNewBusinessPlan = asyncHandler(async (req, res) => {
 			// duplicate key
 			return res.json({ status: "error", error: "Season Already Exists" });
 		}
-		// throw error;
+		throw error;
 	}
 });
 const getBusinessPlan = asyncHandler(async (req, res) => {
@@ -51,7 +51,12 @@ const getBusinessPlan = asyncHandler(async (req, res) => {
 		});
 	else {
 		plan = await models.businessPlan.findAll({
-			include: [{ association: "bPlanChannels" }],
+			include: [
+				{
+					association: "bPlanChannels",
+					include: [{ association: "channelSubbrands" }],
+				},
+			],
 		});
 	}
 

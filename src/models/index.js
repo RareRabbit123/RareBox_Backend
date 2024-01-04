@@ -6,17 +6,18 @@ import BrandLevelBpModal from "./businessPlan/brandLevelBp.modal.js";
 import SupplierModal from "./supplier/supplier.modal.js";
 import CategoryLevelBpModal from "./businessPlan/categoryLevelBp.modal.js";
 import dBConfig from "../config/dbConfig.js";
+import OwnProductionCostingModal from "./ownProductionCosting/ownProductionCosting.modal.js";
 
 const sequelize = new Sequelize(dBConfig.database, dBConfig.user, dBConfig.password, {
 	host: dBConfig.host,
 	// port: dBConfig.port,
-	dialect: "mssql",
+	dialect: "mysql",
 	logging: false,
-	dialectOptions: {
-		options: {
-			encrypt: true,
-		},
-	},
+	// dialectOptions: {
+	// 	options: {
+	// 		encrypt: true,
+	// 	},
+	// },
 
 	pool: {
 		max: 5,
@@ -33,22 +34,21 @@ const models = {
 	brandLevelBp: BrandLevelBpModal(sequelize, Sequelize.DataTypes),
 	categoryLevelBp: CategoryLevelBpModal(sequelize, Sequelize.DataTypes),
 	supplier: SupplierModal(sequelize, Sequelize.DataTypes),
+	productionCosting: OwnProductionCostingModal(sequelize, Sequelize.DataTypes),
 };
 
 // Every user has a profile
 models.businessPlan.hasMany(models.ChannelLevelBp, {
-	foreignKey: "business_plan_id",
 	as: "bPlanChannels",
 });
 models.ChannelLevelBp.hasMany(models.brandLevelBp, {
-	foreignKey: "channel_level_bp_id",
+	// foreignKey: "channel_level_bp_id",
+	as: "channelSubbrands",
 });
 
-models.brandLevelBp.hasMany(models.categoryLevelBp, {
-	foreignKey: "brand_level_bp_id",
-});
+models.brandLevelBp.hasMany(models.categoryLevelBp);
 
-sequelize.sync({ force: false, alter: false }).then(() => {
+sequelize.sync({ alter: true }).then(() => {
 	console.log("yes re-sync done!");
 });
 

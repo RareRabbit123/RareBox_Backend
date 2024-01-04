@@ -26,7 +26,7 @@ export default (sequelize, DataTypes) => {
 				allowNull: false,
 			},
 			role: {
-				type: "NVARCHAR(MAX)",
+				type: DataTypes.JSON,
 				field: "role",
 				allowNull: false,
 			},
